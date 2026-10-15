@@ -13,7 +13,7 @@ pipeline {
         stage ("Deploy to DEV") {
             when {
                 expression {
-                    params...Environment == 'DEV'
+                    params.Environment == 'DEV'
                 }
             }
             steps {
@@ -24,7 +24,7 @@ pipeline {
         stage ("Deploy to TEST") {
             when {
                 expression {
-                    params...Environment == 'TEST'
+                    params.Environment == 'TEST'
                 }
             }
             steps {
@@ -35,14 +35,14 @@ pipeline {
         stage ("Deploy to PROD") {
             when {
                 expression {
-                    params...Environment == 'PROD'
+                    params.Environment == 'PROD'
                 }
             }
             steps {
                 bat 'echo Deploying to PROD'
             }
         }
-        
+
     }
 
 }
