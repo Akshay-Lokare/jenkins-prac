@@ -1,48 +1,31 @@
 pipeline {
     agent any
 
-    parameters {
-        choice(
-            name: "Environment",
-            choices: [ 'DEV', 'TEST', 'PROD' ],
-            description: "Select a deployment environment"
-        )
-    }
-
     stages {
-        stage ("Deploy to DEV") {
+        stage ("Show Parameters") {
+            steps {
+                echo 'Select Env: ${params.Environment}'
+                echo 'Run Tests: ${params.RunTest}'
+            }
+        }
+        stage ("Build") {
+            echo "Building the app"
+        }
+        stage ("Test") {
             when {
                 expression {
-                    params.Environment == 'DEV'
+                    params.RunTest == true
                 }
             }
             steps {
-                bat 'echo Deploying to DEV'
+                bat 'echo Testing the app'
             }
         }
-
-        stage ("Deploy to TEST") {
-            when {
-                expression {
-                    params.Environment == 'TEST'
-                }
-            }
+        stage ("Deploy") {
             steps {
-                bat 'echo Deploying to TEST'
+                bat 'echo Deploying the app'
             }
         }
-
-        stage ("Deploy to PROD") {
-            when {
-                expression {
-                    params.Environment == 'PROD'
-                }
-            }
-            steps {
-                bat 'echo Deploying to PROD'
-            }
-        }
-
     }
 
 }
