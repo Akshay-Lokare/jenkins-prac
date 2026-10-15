@@ -1,0 +1,3 @@
+Application: Task Manager
+Version: 1.0
+Status: In Development
