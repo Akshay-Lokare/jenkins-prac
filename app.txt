@@ -1,4 +1,4 @@
 Application: Task Manager
-Version: 1.0
+Version: 2.0
 Status: In Development
 Notes: This is feature-1 branch
