@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build'){
            steps {
-             bat 'echo Building the app...'
+             bat 'echo Building 1 the app...'
+             bat 'echo Building 2 the app...'
+             bat 'echo Building 3 the app...'
            }
         }
         stage('Test'){
