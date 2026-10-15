@@ -2,16 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage ("Show Parameters") {
+        stage("Show Parameters") {
             steps {
-                echo 'Select Env: ${params.Environment}'
-                echo 'Run Tests: ${params.RunTest}'
+                echo "Select Env: ${params.Environment}"
+                echo "Run Tests: ${params.RunTest}"
             }
         }
-        stage ("Build") {
-            echo "Building the app"
+
+        stage("Build") {
+            steps {
+                echo "Building the app"
+            }
         }
-        stage ("Test") {
+
+        stage("Test") {
             when {
                 expression {
                     params.RunTest == true
@@ -21,11 +25,11 @@ pipeline {
                 bat 'echo Testing the app'
             }
         }
-        stage ("Deploy") {
+
+        stage("Deploy") {
             steps {
                 bat 'echo Deploying the app'
             }
         }
     }
-
 }
