@@ -2,34 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage("Show Parameters") {
+
+        stage("Checkout") {
             steps {
-                echo "Select Env: ${params.Environment}"
-                echo "Run Tests: ${params.RunTest}"
+                echo "Source code checkout started"
             }
         }
 
         stage("Build") {
+            tools {
+                jdk 'JAVA-11'
+            }
             steps {
-                echo "Building the app"
+                echo "Application build started"
             }
         }
 
         stage("Test") {
-            when {
-                expression {
-                    params.RunTest == true
-                }
-            }
             steps {
-                bat 'echo Testing the app'
+                echo '${%JAVA_HOME%}'
+                echo 'Application testing started'
             }
         }
 
         stage("Deploy") {
             steps {
-                bat 'echo Deploying the app'
+                echo 'Application deployment started'
             }
         }
+
     }
 }
