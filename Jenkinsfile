@@ -15,13 +15,15 @@ pipeline {
             }
             steps {
                 echo "Application build started"
+                bat 'java -version'
+                bat 'javac -version'
             }
         }
 
         stage("Test") {
             steps {
-                echo '${%JAVA_HOME%}'
                 echo 'Application testing started'
+                bat 'echo JAVA_HOME=%JAVA_HOME%'
             }
         }
 
